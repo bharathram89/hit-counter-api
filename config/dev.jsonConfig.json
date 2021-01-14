@@ -10,8 +10,8 @@
     "email":{
         "hitCounterEmail":"sivhitcounter@gmail.com",
         "SESregion":"us-west-1",
-        "awsKey":"AKIAIR2WFKULXDNG77ZQ",
-        "awsSecret":"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",
+        "awsKey":"Hib3XT6jwUv06",
+        "awsSecret":"HiHXp1gKm3.9k",
         "UrlToConfirmEmailPage":"https://pt1ueglkq4.execute-api.us-west-1.amazonaws.com/dev/verifyPlayer"
     },
     "token":{

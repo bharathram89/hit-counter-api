@@ -3,14 +3,15 @@ let createPlayerTemplate = require('../emailTemplates/createPlayerTemplate')
 let config = require('../config/dev.jsonConfig.json').email;
 const SES = new AWS.SES({region:config.SESregion});
 
+var Cryptr = require('cryptr'); 
+const cryptr = new Cryptr('HitCounterKey');
+
 AWS.config.update({
-  accessKeyId: config.awsSecret,
-  secretAccessKey: config.awsKey,
+  accessKeyId: cryptr.decrypt(config.awsSecret),
+  secretAccessKey: cryptr.decrypt(config.awsKey) ,
   region:config.SESregion
 });
 
-var Cryptr = require('cryptr'); 
-const cryptr = new Cryptr('HitCounterKey');
 
 function createPlayerSendEmail(ToEmailAddress,code,gamerTag){
   const htmlBody =  createPlayerTemplate.getCreatePlayerTemplate(config,ToEmailAddress,code,gamerTag);
