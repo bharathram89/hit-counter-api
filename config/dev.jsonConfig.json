@@ -1,0 +1,24 @@
+{
+    "db":{
+        "dbhost": "hitcounter.cl2yr0yt9ms9.us-west-1.rds.amazonaws.com",
+        "port": 3306,
+        "dbname": "hitCounter_dev",
+        "dbuser": "admin",
+        "dbpassword": "success1!",
+        "debug": true
+    },
+    "email":{
+        "hitCounterEmail":"sivhitcounter@gmail.com",
+        "SESregion":"us-west-1",
+        "awsKey":"AKIAIR2WFKULXDNG77ZQ",
+        "awsSecret":"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",
+        "UrlToConfirmEmailPage":"https://pt1ueglkq4.execute-api.us-west-1.amazonaws.com/dev/verifyPlayer"
+    },
+    "token":{
+        "jwtKey":"ThisIsADevTestKey",
+        "jwtRefreshKey":"ThisisaDevRefereshKey"
+    },
+    "signOn":{
+        "Sessiontime":"15m"
+    }
+}
