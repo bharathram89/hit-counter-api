@@ -12,7 +12,7 @@
         "SESregion":"us-west-1",
         "awsKey":"bdbd6271a526f4a5a64c05f58998aef83c08b2b7d141f3d96db5f44df8e493aef79013792a5e58197b4f3fdf7d8b740d531d9e9f8d5f6b46898ff43b92ae7af118c37a7971ef6a1b2da358e479f6ffcf7d17eaca2fba4d2700d500a908a63e24a08bed0fccd9f5979ae96828acd853b1f2196fe6",
         "awsSecret":"f270b773b8ec4c4753a1712819e239124e15c33fd12d4d44396f7c4766250c603c81a768a9ca60e55ba1f6e72071b5c19d14dcf95aff831b23273ca376f3c374a9f6d4fca39391843f66ae86dcc6eaadd6db6d95e2ffda84015cea108e2b3401083a222ffd607c8c0692ead2b2a7a0bb0b73bc37faf93a6ebcda804218127a222a2ecfa8a0a40de7",
-        "UrlToConfirmEmailPage":"https://pt1ueglkq4.execute-api.us-west-1.amazonaws.com/dev/verifyPlayer"
+        "UrlToConfirmEmailPage":"https://4bgn511z3f.execute-api.us-west-1.amazonaws.com/dev/verifyPlayer"
     },
     "token":{
         "jwtKey":"ThisIsADevTestKey",
