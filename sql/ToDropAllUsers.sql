@@ -1,12 +1,22 @@
 
--- Below removes the Forigin key on gameTypes to user.  
+-- Remove all relationships
 ALTER TABLE `hitCounter_dev`.`gameTypes` 
 DROP FOREIGN KEY `custom_gameType_user`;
 ALTER TABLE `hitCounter_dev`.`gameTypes` 
 DROP INDEX `custom_gameType_user_idx` ;
 ;
 
--- Below adds the Forigin key on gameTypes to user.  
+
+
+
+
+
+
+
+
+
+
+-- readd all relationships 
 ALTER TABLE `hitCounter_dev`.`gameTypes` 
 ADD INDEX `custom_gameType_user_idx` (`userID` ASC) VISIBLE;
 ;

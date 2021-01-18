@@ -32,6 +32,8 @@ module.exports = function(app){
           .withMessage('Invalid Type!!!')
         ],async function (req, res) {
         
+            res.header('Access-Control-Allow-Origin', '*')
+            res.header('Access-Control-Expose-Headers',"hit-token")
         const errors = validationResult(req);
         if(errors.isEmpty()){
             const { email, password, userType } = req.query
@@ -42,9 +44,7 @@ module.exports = function(app){
                         let token = await tokenHelper.createToken(email,config.Sessiontime);
                         console.log(req.query,"data",token); 
                         res.header('hit-token',token);
-                        res.header('Access-Control-Allow-Origin', '*')
-                        res.header('Access-Control-Expose-Headers',"hit-token")
-                        res.status(200).send("pass");
+                        res.status(200).send({email:email});
                     }else{
                         res.status(400).json({ errors: errors.array(),customMsg:"Incorrect email or password" });
                     } 
@@ -68,6 +68,8 @@ module.exports = function(app){
             .trim()
             .withMessage('Invalid token!!!')
         ],async function(req,res){
+
+            res.header('Access-Control-Allow-Origin', '*')
             const errors = validationResult(req);
             if(errors.isEmpty()){
                 const { token } = req.query;

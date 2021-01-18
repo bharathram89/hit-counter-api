@@ -7,8 +7,8 @@ var Cryptr = require('cryptr');
 const cryptr = new Cryptr('HitCounterKey');
 
 AWS.config.update({
-  accessKeyId: cryptr.decrypt(config.awsSecret),
-  secretAccessKey: cryptr.decrypt(config.awsKey) ,
+  accessKeyId:  cryptr.decrypt(config.awsSecret),
+  secretAccessKey: cryptr.decrypt(config.awsKey),
   region:config.SESregion
 });
 

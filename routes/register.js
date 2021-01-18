@@ -33,6 +33,7 @@ module.exports = function(app){
       .trim()
       .withMessage('Invalid Type address!!!')
     ],async function (req, res) {
+      res.header('Access-Control-Allow-Origin', '*');
         
         const errors = validationResult(req);
         if(errors.isEmpty()){
@@ -43,7 +44,6 @@ module.exports = function(app){
             let result = await user.createPlayer(gamerTag, email, password)
               console.log('in here')
               if(result){ 
-                res.header('Access-Control-Allow-Origin', '*');
                 res.status(200).send(result);
               }else{
                 res.status(400).send(result);
@@ -73,6 +73,7 @@ module.exports = function(app){
       .withMessage('No Code Found!!!')
   ],async function (req,res){
   
+    res.header('Access-Control-Allow-Origin', '*');
     const errors = validationResult(req);
     if(errors.isEmpty()){
       const { email, code } = req.query
@@ -80,7 +81,6 @@ module.exports = function(app){
       let emailExists = await user.isEmailRegistered(email);
       if(emailExists){
         let result = await user.verifyPlayer(email,code)
-        res.header('Access-Control-Allow-Origin', '*');
         res.status(200).send(result); 
       }else{
         res.status(400).json({ errors: errors.array(),customMsg:"Email Address is NOT Registered" });

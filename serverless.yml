@@ -33,6 +33,12 @@ functions:
       - http: 
           path: /allGameType
           method: get
+      - http: 
+          path: /gameConfig
+          method: get
+      - http: 
+          path: /startGame
+          method: post
 
 
   

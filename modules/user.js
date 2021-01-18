@@ -80,7 +80,7 @@ async function checkCredentials(email,password){
         if(storedVal === password){
             return true;
         }else{
-            return true;
+            return false;
         }
         console.log(storedVal,password," do they patch?")
     }else{
