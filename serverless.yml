@@ -39,7 +39,11 @@ functions:
       - http: 
           path: /startGame
           method: post
-
-
+      - http: 
+          path: /gameOver
+          method: post
+      - http: 
+          path: /gameOver
+          method: options
   
 

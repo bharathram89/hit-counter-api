@@ -5,3 +5,6 @@ Hit Counter Setup:
 
 Keep in mind:
 -password is stored as just a simple crypt repo and is not that hard to break.
+
+
+With aws lambda you cant add custom headers unless you configure in aws api gateway. better to send a body

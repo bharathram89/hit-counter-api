@@ -1,3 +1,4 @@
+const e = require('express');
 const db  = require ('../helpers/db_connect');
 const rules  = require ('../helpers/rules');
 const game = require('../routes/game');
@@ -29,9 +30,9 @@ async function getGameConfig(gameTypeID){
 
 async function startGame(userEmail,gameTypeID){
     let sql = "call newGamePlayer ("+gameTypeID+",'"+userEmail+"')"
-    console.log(sql," proc run sql")
+    console.log(sql," proc run sql startGame")
     let newGameID = await db.QueryDB(sql);
-    console.log(newGameID[0],"newGameID")
+    console.log(newGameID[0],"newGameID startGame")
     if(newGameID[0] && newGameID[0][0] && newGameID[0][0].gID){
         return newGameID[0];
     }else{
@@ -39,4 +40,15 @@ async function startGame(userEmail,gameTypeID){
     }
 }
 
-module.exports={getAllGames,getGameConfig,startGame}
+async function gameOver(userEmail,gameID,stats){
+    let sql = "call UpdateActiveGameToComplete ("+gameID+","+stats.totalKills+","+ stats.totalRevived +","+ stats.totalRespawn +","+ stats.totalMediced +","+ stats.totalDeath +")"
+    console.log(sql," proc run gameOver " +sql)
+    let resp = await db.QueryDB(sql);
+    console.log("resp from db for gameOver ",resp)
+    if(resp){
+        return true;
+    }else{
+        return false
+    }
+}
+module.exports={getAllGames,getGameConfig,startGame,gameOver}
