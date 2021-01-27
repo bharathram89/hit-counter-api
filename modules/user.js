@@ -36,7 +36,7 @@ async function verifyPlayer(email,code){
         let key = cryptr.decrypt(queryResult[0].emailverificationCode);
         let key2 = cryptr.decrypt(code);
         if (key === key2){
-            let updateSql = "Update users Set status='active' Where email ='"+email+"';";
+            let updateSql = "Update users Set emailverificationCode='complete' Where email ='"+email+"';";
             let updateQueryResult = await db.QueryDB(updateSql);
             if(updateQueryResult.changedRows === 1){ 
                 console.log(updateQueryResult,"results for update")
@@ -81,13 +81,26 @@ async function checkCredentials(email,password){
             return true;
         }else{
             return false;
-        }
-        console.log(storedVal,password," do they patch?")
+        } 
     }else{
         return false;
     }
      
 }
 
+async function getPlayerStatsSummary(userEmail){
+    let sql = "select * from playerStatsSummary where email = '"+userEmail+"'";
+    let queryResult = await db.QueryDB(sql);
+    console.log(queryResult,"getPlayerStatsSummary");
+    return queryResult;
+}
 
-module.exports = {createPlayer,verifyPlayer,isEmailRegistered,checkCredentials}
+
+async function getUserData(userEmail){
+    let sql = " select u.email,u.userType,u.gamerTag,u.status,pp.*  from users u LEFT JOIN playerProfile pp  on u.userID = pp.userID  Where u.email = '"+userEmail+"'";
+    let queryResult = await db.QueryDB(sql);
+    console.log(queryResult,"getUserData");
+    return queryResult;
+}
+
+module.exports = {createPlayer,verifyPlayer,isEmailRegistered,checkCredentials,getPlayerStatsSummary,getUserData}

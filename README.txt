@@ -8,3 +8,5 @@ Keep in mind:
 
 
 With aws lambda you cant add custom headers unless you configure in aws api gateway. better to send a body
+To send information in the body of a call you need to mention the type in headers in Content-type and to send that header you will have to add options route and allow the header
+

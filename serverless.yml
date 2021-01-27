@@ -45,5 +45,9 @@ functions:
       - http: 
           path: /gameOver
           method: options
-  
-
+      - http: 
+          path: /playerStatsSummary
+          method: get
+      - http: 
+          path: /userData
+          method: get

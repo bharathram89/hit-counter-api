@@ -8,6 +8,8 @@ const app = express();
  require('./routes/register.js')(app);
  require('./routes/signOn.js')(app);
  require('./routes/game.js')(app);
+ require('./routes/stats.js')(app);
+ require('./routes/user.js')(app);
 
 // var router = express.Router()
 
