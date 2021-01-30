@@ -51,3 +51,12 @@ functions:
       - http: 
           path: /userData
           method: get
+      - http: 
+          path: /profile
+          method: post
+      - http: 
+          path: /profile
+          method: options
+      - http: 
+          path: /pastGames
+          method: get

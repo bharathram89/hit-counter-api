@@ -181,13 +181,53 @@ module.exports = function(app){
 
     }) 
 
-
+//BELOW NEEDS TO BE THERE FOR THE GAMVE OVER ROUTE TO GET THE BODY DATA
     app.options('/gameOver',
     [ ],(req,res)=>{
         
         res.header('Access-Control-Allow-Origin', '*'); 
         res.header('Access-Control-Allow-Headers', 'Content-Type'); 
         res.status(200).json({});
+    })
+
+
+
+
+    app.get('/pastGames',
+    [ 
+    check('token')
+        .custom(token => {
+            let isTokenValid = tokenHelper.validateToken(token);
+            if(isTokenValid){
+                return true; 
+            }else{ 
+                return Promise.reject('Invalid Token');
+            }
+        })
+        .exists()
+        .isLength({ min:15, max: 200 }) 
+        .trim()
+        .withMessage('Invalid token!!!'),
+    check('filter')
+        .exists()
+        .isLength({ min:2, max: 200 }) 
+        .trim()
+        .withMessage('Invalid filter!!!'),
+    ]
+    ,async function(req,res){
+        res.header('Access-Control-Allow-Origin', '*');
+        const errors = validationResult(req);
+        console.log(errors.isEmpty(),"errors")
+        if(errors.isEmpty()){
+            const { token, filter } = req.query;
+            let tokenData = await tokenHelper.findUserFromToken(token); 
+            let result = await game.getPastGames(tokenData.data.user,filter) 
+            res.status(200).json(result);
+
+        } else{
+            res.status(400).json({ errors: errors.array(),customMsg:"pastGames FAILED VALIDATION" });
+        }
+
     })
 
 }

@@ -4,7 +4,7 @@ const rules  = require ('../helpers/rules');
 const game = require('../routes/game');
 
 async function getAllGames(userEmail){ 
-    let sql = "select name,revive,maxRevive,timeToRevive,bleedOutTime,respawn,maxRespawn,gameTypeID from gameTypes gt Left JOIN users u on gt.userID = u.userID Where gt.userID IS NULL or  u.email='"+userEmail+"'"
+    let sql = "select name,revive,maxRevive,timeToRevive,bleedOutTime,respawn,maxRespawn,gameTypeID from gameTypes gt Left JOIN users u on gt.userID = u.userID Where gt.userID=1 or  u.email='"+userEmail+"'"
     let playersGameTypes = await db.QueryDB(sql);
     let games = []
     playersGameTypes.forEach(gameType => {
@@ -51,4 +51,29 @@ async function gameOver(userEmail,gameID,stats){
         return false
     }
 }
-module.exports={getAllGames,getGameConfig,startGame,gameOver}
+
+
+async function getPastGames (userEmail,filter){
+    let sql = `select DISTINCT gt.name,g.startTime,g.endTime,pg.*
+    from playersGames pg 
+        JOIN games g 
+            on pg.gameID = g.gameID 
+        JOIN gameTypes gt
+            on g.gameTypeID = gt.gameTypeID
+        JOIN users u
+            on u.userID = pg.userID
+    where u.email ='`+userEmail+`' and g.status ='complete'`
+
+
+    console.log(sql," run getPastGames ")
+    let resp = await db.QueryDB(sql);
+    console.log("resp from db for getPastGames ",resp)
+    if(resp){
+        return resp;
+    }else{
+        return false
+    }
+
+}
+
+module.exports={getAllGames,getGameConfig,startGame,gameOver,getPastGames}

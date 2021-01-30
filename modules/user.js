@@ -103,4 +103,17 @@ async function getUserData(userEmail){
     return queryResult;
 }
 
-module.exports = {createPlayer,verifyPlayer,isEmailRegistered,checkCredentials,getPlayerStatsSummary,getUserData}
+
+async function setProfile(userEmail,gamer_tag,clan_tag,about,pass,email_com,promotional_com,product_com,facebook,twitter,youtube,pfPic){
+    let sql = "CALL addProfile ('"+userEmail+"','"+gamer_tag+"','"+clan_tag+"','"+about+"','"+pass+"',"+email_com+","+promotional_com+","+product_com+",'"+facebook+"','"+twitter+"','"+youtube+"','"+pfPic +"')";
+    console.log("sql setProfile addProfile", sql)
+    let queryResult = await db.QueryDB(sql); 
+    console.log(queryResult,"setProfile addProfile");
+    return queryResult;
+}
+
+
+
+module.exports = {createPlayer,verifyPlayer,isEmailRegistered,checkCredentials,getPlayerStatsSummary,getUserData,setProfile}
+
+//call addProfile
