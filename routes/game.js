@@ -162,7 +162,7 @@ module.exports = function(app){
     ],
     async function(req,res){
         res.header('Access-Control-Allow-Origin', '*'); 
-        res.header('Access-Control-Allow-Headers', 'Content-Type'); 
+        res.header('Access-Control-Allow-Headers', 'Content-Type , X-Api-Key'); 
         console.log(req.body,"req")
         const errors = validationResult(req);
         console.log(errors.isEmpty(),"errors")
@@ -180,17 +180,6 @@ module.exports = function(app){
         }
 
     }) 
-
-//BELOW NEEDS TO BE THERE FOR THE GAMVE OVER ROUTE TO GET THE BODY DATA
-    app.options('/gameOver',
-    [ ],(req,res)=>{
-        
-        res.header('Access-Control-Allow-Origin', '*'); 
-        res.header('Access-Control-Allow-Headers', 'Content-Type'); 
-        res.status(200).json({});
-    })
-
-
 
 
     app.get('/pastGames',

@@ -1,6 +1,9 @@
 service: hit-counter
 provider:
   name: aws
+  apiGateway: 
+    apiKey: 
+        - hit-custom-key
   runtime: nodejs12.x
   stage: dev
   region: us-west-1
@@ -20,43 +23,81 @@ functions:
     events: 
       - http: 
           path: /user
-          method: post
+          method: post 
+          private: true
+          cors: true
       - http: 
           path: /verifyPlayer
-          method: get
+          method: get 
+          private: true
+          cors: true
       - http: 
           path: /signOn
-          method: post
+          method: post 
+          private: true
+          cors: true 
       - http: 
           path: /verifyToken
-          method: get
+          method: get 
+          private: true
+          cors: true
       - http: 
           path: /allGameType
-          method: get
+          method: get 
+          private: true
+          cors: true
       - http: 
           path: /gameConfig
-          method: get
+          method: get 
+          private: true
+          cors: true
       - http: 
           path: /startGame
-          method: post
+          method: post 
+          private: true
+          cors: true
       - http: 
           path: /gameOver
-          method: post
-      - http: 
-          path: /gameOver
-          method: options
+          method: post 
+          private: true
+          cors: 
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - stats
+            allowCredentials: false
       - http: 
           path: /playerStatsSummary
-          method: get
+          method: get 
+          private: true
+          cors: true
       - http: 
           path: /userData
-          method: get
+          method: get 
+          private: true
+          cors: true
       - http: 
           path: /profile
-          method: post
-      - http: 
-          path: /profile
-          method: options
+          method: post 
+          private: true
+          cors: 
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - profile
+            allowCredentials: false
       - http: 
           path: /pastGames
-          method: get
+          method: get 
+          private: true
+          cors: true

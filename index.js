@@ -18,7 +18,22 @@ const app = express();
 //   console.log('Time: ', Date.now())
 //   next()
 // })
+// If the response lacks a Vary: header, fix it in a CloudFront Origin Response trigger.
 
+// exports.handler = (event, context, callback) => {
+//   const response = event.Records[0].cf.response;
+//   const headers = response.headers;
+
+//   if (!headers['vary'])
+//   {
+//       headers['vary'] = [
+//           { key: 'Vary', value: 'Access-Control-Request-Headers' },
+//           { key: 'Vary', value: 'Access-Control-Request-Method' },
+//           { key: 'Vary', value: 'Origin' },
+//       ];
+//   }
+//   callback(null, response);
+// };
 // app.use('/portal',secureRoutes);
 // app.use('/signOn',signOnRoutes); 
 
